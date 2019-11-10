@@ -17,10 +17,66 @@ public class Blogs {
     private String writer;
     private String lastupdated;
     private String detail1;
+    private String detail11;
+    private String detail12;
     private String h1;
     private String detailh1;
+    private String detailh11;
+    private String detailh12;
     private String h2;
     private String detailh2;
+    private String detailh21;
+    private String detailh22;
+
+    public String getDetail11() {
+        return detail11;
+    }
+
+    public void setDetail11(String detail11) {
+        this.detail11 = detail11;
+    }
+
+    public String getDetail12() {
+        return detail12;
+    }
+
+    public void setDetail12(String detail12) {
+        this.detail12 = detail12;
+    }
+
+    public String getDetailh11() {
+        return detailh11;
+    }
+
+    public void setDetailh11(String detailh11) {
+        this.detailh11 = detailh11;
+    }
+
+    public String getDetailh12() {
+        return detailh12;
+    }
+
+    public void setDetailh12(String detailh12) {
+        this.detailh12 = detailh12;
+    }
+
+    public String getDetailh21() {
+        return detailh21;
+    }
+
+    public void setDetailh21(String detailh21) {
+        this.detailh21 = detailh21;
+    }
+
+    public String getDetailh22() {
+        return detailh22;
+    }
+
+    public void setDetailh22(String detailh22) {
+        this.detailh22 = detailh22;
+    }
+
+
 
     public Long getId() {
         return Id;

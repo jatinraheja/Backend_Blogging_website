@@ -18,13 +18,6 @@ public class UserController {
     {
         return usr.findAll();
     }
-//    @PostMapping(value= "/signup",consumes = "application.json")
-//    public Users signup(@RequestBody Users user)
-//    {
-//        user.setActive(1);
-//        user.setAuthentication("basic ");
-//        usr.save(user);
-//        return user;
-//    }
+
 
 }
