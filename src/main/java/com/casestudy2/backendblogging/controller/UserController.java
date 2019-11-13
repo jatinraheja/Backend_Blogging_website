@@ -5,7 +5,9 @@ import com.casestudy2.backendblogging.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -14,9 +16,14 @@ public class UserController {
     @Autowired
     UserRepository usr;
     @GetMapping("/allusers")
-    public List<Users> getAllItems()
+    public List<Users> getAllUsers()
     {
         return usr.findAll();
+    }
+    @GetMapping("/users")
+    public Optional<Users> getUser(Principal principal)
+    {
+        return usr.findByEmail(principal.getName());
     }
 
 

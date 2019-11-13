@@ -30,4 +30,14 @@ public class BlogController {
     public Blogs getblog(@PathVariable("id") Long id){
         return blogRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Blogs","Id",id));
     }
+    @GetMapping("/get/cat/{cat}")
+    public List<Blogs> getblogsbycategory(@PathVariable("cat") String cat)
+    {
+        return blogRepository.findAllByCategory(cat);
+    }
+    @GetMapping("/get/writer/{writer}")
+    public List<Blogs> getblogsbywriter(@PathVariable("writer") String writer)
+    {
+        return blogRepository.findAllByWriter(writer);
+    }
 }
