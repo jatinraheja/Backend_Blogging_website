@@ -1,15 +1,14 @@
 package com.casestudy2.backendblogging.Modal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Blogs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @ManyToOne
+    private Users users;
     private String name;
     private String img;
     private String heading;
