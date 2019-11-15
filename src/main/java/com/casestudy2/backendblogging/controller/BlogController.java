@@ -3,10 +3,12 @@ package com.casestudy2.backendblogging.controller;
 import com.casestudy2.backendblogging.Modal.Blogs;
 import com.casestudy2.backendblogging.exception.ResourceNotFoundException;
 import com.casestudy2.backendblogging.repository.BlogRepository;
+import com.casestudy2.backendblogging.service.blogservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 
@@ -16,11 +18,13 @@ import java.util.concurrent.BlockingDeque;
 public class BlogController {
     @Autowired
     BlogRepository blogRepository;
-    @PostMapping(path = "/add",consumes = "Application/Json")
+    @Autowired
+    blogservice blogservice;
+    @PostMapping("/add")
     public Blogs addblog(@Valid @RequestBody Blogs blog)
     {
-        blogRepository.save(blog);
-        return blog;
+        return blogRepository.save(blog);
+
     }
     @GetMapping(path = "/get")
     public List<Blogs> getblogs(){
@@ -34,6 +38,11 @@ public class BlogController {
     public List<Blogs> getblogsbycategory(@PathVariable("cat") String cat)
     {
         return blogRepository.findAllByCategory(cat);
+    }
+    @GetMapping(path ="/get/owner")
+    public List<Blogs> getblogbyowner(Principal principal)
+    {
+    return blogservice.getEmail(principal);
     }
     @GetMapping("/get/writer/{writer}")
     public List<Blogs> getblogsbywriter(@PathVariable("writer") String writer)

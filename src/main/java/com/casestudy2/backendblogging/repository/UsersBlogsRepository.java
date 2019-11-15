@@ -2,17 +2,16 @@ package com.casestudy2.backendblogging.repository;
 
 import com.casestudy2.backendblogging.Modal.Blogs;
 import com.casestudy2.backendblogging.Modal.Users;
+import com.casestudy2.backendblogging.Modal.UsersBlogs;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blogs,Long> {
-    List<Blogs> findAllByCategory(String cat);
-    List<Blogs> findAllByWriter(String writer);
-    public ArrayList<Blogs> findAllByUsers(Optional<Users> users);
+public interface UsersBlogsRepository extends CrudRepository<UsersBlogs,Long> {
+ public ArrayList<UsersBlogs> findAllByUsers(Optional<Users> users);
 
 }

@@ -1,6 +1,7 @@
 package com.casestudy2.backendblogging.controller;
 
 import com.casestudy2.backendblogging.Modal.Users;
+import com.casestudy2.backendblogging.exception.ResourceNotFoundException;
 import com.casestudy2.backendblogging.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,18 @@ public class UserController {
     {
         return usr.findByEmail(principal.getName());
     }
+    @PutMapping(path = "/updateuser/{id}")
+    public Users updateUser(@PathVariable(value = "id") Long id, @RequestBody Users newusr)
+    {
+        Users user = usr.findById(id).orElseThrow(()-> new ResourceNotFoundException("Users","user-id",id));
+        user.setEmail(newusr.getEmail());
+        user.setContact(newusr.getContact());
+        user.setGender(newusr.getGender());
+        user.setPassword(newusr.getPassword());
+        Users updateduser = usr.save(user);
+         return updateduser;
+    }
+
 
 
 }
