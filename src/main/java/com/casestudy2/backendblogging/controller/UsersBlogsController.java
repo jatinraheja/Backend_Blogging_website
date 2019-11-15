@@ -30,4 +30,9 @@ public class UsersBlogsController {
     {
             return userblogservice.getUsersBlogsfromUser(principal);
     }
+    @GetMapping("/myblog/deleteblog/{id}")
+    public String deleteblog(@PathVariable("id") Long id, Principal principal)
+    {
+        return userblogservice.deleteblog(id,principal);
+    }
 }

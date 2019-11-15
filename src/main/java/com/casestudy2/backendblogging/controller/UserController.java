@@ -37,7 +37,11 @@ public class UserController {
         Users updateduser = usr.save(user);
          return updateduser;
     }
-
+    @GetMapping("/user/{id}")
+    public Users getuser(@PathVariable(value = "id") Long id)
+    {
+        return usr.findById(id).orElseThrow(()-> new ResourceNotFoundException("Users","Id",id));
+    }
 
 
 }

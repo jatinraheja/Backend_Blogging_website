@@ -13,5 +13,6 @@ import java.util.Optional;
 @Repository
 public interface UsersBlogsRepository extends CrudRepository<UsersBlogs,Long> {
  public ArrayList<UsersBlogs> findAllByUsers(Optional<Users> users);
+ void deleteByUsersAndBlogs(Optional<Users> users, Optional<Blogs> blogs);
 
 }

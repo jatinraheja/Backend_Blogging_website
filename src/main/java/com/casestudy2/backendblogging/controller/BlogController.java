@@ -49,4 +49,9 @@ public class BlogController {
     {
         return blogRepository.findAllByWriter(writer);
     }
+    @GetMapping(path = "/delete/{id}")
+    public void deleteblog(@PathVariable("id") Long id)
+    {
+         blogRepository.deleteById(id);
+    }
 }

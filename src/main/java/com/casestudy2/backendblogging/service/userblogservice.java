@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -41,5 +42,13 @@ public class userblogservice {
         usersBlogs.setUsers(users.get());
         usersBlogsRepository.save(usersBlogs);
         return "\"Blog added\"";
+    }
+    @Transactional
+    public String deleteblog(Long id,Principal principal)
+    {
+        Optional<Blogs> blogs = blogRepository.findById(id);
+        Optional<Users> users = userRepositaryclass.getByEmail(principal.getName());
+        usersBlogsRepository.deleteByUsersAndBlogs(users,blogs);
+        return "\"Blog deleted\"";
     }
 }
