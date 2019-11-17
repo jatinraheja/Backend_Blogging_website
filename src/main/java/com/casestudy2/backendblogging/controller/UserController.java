@@ -21,6 +21,11 @@ public class UserController {
     {
         return usr.findAll();
     }
+    @GetMapping(path = "/allusers/{username}")
+    public Users getAllUsers(@PathVariable(value = "username") String username)
+    {
+        return usr.findAllByUsername(username);
+    }
     @GetMapping("/users")
     public Optional<Users> getUser(Principal principal)
     {
@@ -37,7 +42,7 @@ public class UserController {
         Users updateduser = usr.save(user);
          return updateduser;
     }
-    @GetMapping("/user/{id}")
+    @GetMapping(path="/getuser/{id}")
     public Users getuser(@PathVariable(value = "id") Long id)
     {
         return usr.findById(id).orElseThrow(()-> new ResourceNotFoundException("Users","Id",id));

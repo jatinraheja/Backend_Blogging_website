@@ -14,4 +14,9 @@ public class userRepositaryclass {
         System.out.println("Getting by email");
         return userRepository.findByEmail(email);
     }
+    public Optional<Users> getById(Long id)
+    {
+        System.out.println("Getting by id");
+        return userRepository.findById(id);
+    }
 }
