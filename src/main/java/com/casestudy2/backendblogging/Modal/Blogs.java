@@ -35,6 +35,16 @@ public class Blogs {
     private String detailh2;
     private String detailh21;
     private String detailh22;
+    private String status;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
 
     public String getDetail11() {
         return detail11;

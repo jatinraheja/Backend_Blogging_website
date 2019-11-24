@@ -30,7 +30,12 @@ public class Followersservice {
         ArrayList<Followers> followers = followersRepository.findAllByUsers2(user);
         return followers;
     }
-
+    public ArrayList<Followers> getfollowers(Principal principal)
+    {
+        Optional<Users> user = userRepositaryclass.getByEmail(principal.getName());
+        ArrayList<Followers> myfollowers = followersRepository.findAllByUsers(user);
+        return myfollowers;
+    }
     public String addFollowing(Long id, Principal principal)
     {
         Optional<Users> user =  userRepositaryclass.getById(id);
@@ -38,9 +43,22 @@ public class Followersservice {
         Followers followers = new Followers();
         followers.setUsers(user.get());
         followers.setUsers2(user2.get());
+        followers.setFollowed(true);
         followersRepository.save(followers);
         return "\"Following\"";
 
+    }
+    public Boolean isfollowing(Long id, Principal principal)
+    {
+        Optional<Users> user =  userRepositaryclass.getById(id);
+        Optional<Users> user2 = userRepositaryclass.getByEmail(principal.getName());
+        boolean exit = followersRepository.existsFollowersByUsersAndUsers2(user,user2);
+        if(exit) {
+            Followers follower = followersRepository.findFollowersByUsersAndUsers2(user, user2);
+            return follower.isFollowed();
+        }
+        else
+            return false;
     }
     @Transactional
     public String deletefollowing(Long id,Principal principal)

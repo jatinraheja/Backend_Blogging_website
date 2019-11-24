@@ -54,4 +54,26 @@ public class BlogController {
     {
          blogRepository.deleteById(id);
     }
+    @PutMapping(path = "/updateblog/{id}")
+    public Blogs updateblog(@PathVariable("id") Long id, @RequestBody Blogs updatedblog)
+    {
+        Blogs blog = blogRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Blogs","Id",id));
+        blog.setName(updatedblog.getName());
+        blog.setCategory(updatedblog.getCategory());
+        blog.setHeading(updatedblog.getHeading());
+        blog.setDetail1(updatedblog.getDetail1());
+        blog.setDetail11(updatedblog.getDetail11());
+        blog.setDetail12(updatedblog.getDetail12());
+        blog.setH1(updatedblog.getH1());
+        blog.setDetailh1(updatedblog.getDetailh1());
+        blog.setDetailh11(updatedblog.getDetailh11());
+        blog.setDetailh12(updatedblog.getDetailh12());
+        blog.setH2(updatedblog.getH2());
+        blog.setDetailh2(updatedblog.getDetailh2());
+        blog.setDetailh21(updatedblog.getDetailh21());
+        blog.setDetailh22(updatedblog.getDetailh22());
+        blog.setImg(updatedblog.getImg());
+        blog.setStatus(updatedblog.getStatus());
+        return blogRepository.save(blog);
+    }
 }

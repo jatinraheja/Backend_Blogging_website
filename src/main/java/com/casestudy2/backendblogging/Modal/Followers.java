@@ -4,10 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(
+        uniqueConstraints =  @UniqueConstraint(columnNames = {"users_id", "users2_id"})
+)
 public class Followers implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long Id;
+    private boolean followed;
     @ManyToOne
     private Users users;
     @ManyToOne
@@ -37,7 +41,12 @@ public class Followers implements Serializable {
         this.users2 = users2;
     }
 
+    public boolean isFollowed() {
+        return followed;
+    }
 
-
+    public void setFollowed(boolean followed) {
+        this.followed = followed;
+    }
 
 }

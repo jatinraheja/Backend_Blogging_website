@@ -25,11 +25,19 @@ public class FollowersController {
     {
         return followersservice.getfollowing(principal);
     }
+    @GetMapping(path = "/following/{id}")
+    private Boolean isfollowing(@PathVariable("id") Long id,Principal principal)
+    {
+        return followersservice.isfollowing(id,principal);
+    }
     @GetMapping(path = "/delete/{id}")
     private String deletefollow(@PathVariable("id") Long id,Principal principal)
     {
         return followersservice.deletefollowing(id,principal);
     }
-
-
+    @GetMapping(path="/myfollowers")
+    private ArrayList<Followers> getmyfollowers(Principal principal)
+    {
+        return followersservice.getfollowers(principal);
+    }
 }
