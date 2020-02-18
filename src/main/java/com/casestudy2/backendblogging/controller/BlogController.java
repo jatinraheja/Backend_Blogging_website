@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
 
@@ -23,6 +25,10 @@ public class BlogController {
     @PostMapping("/add")
     public Blogs addblog(@Valid @RequestBody Blogs blog)
     {
+        String pattern = "MMM dd,yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String data = simpleDateFormat.format(new Date());
+        blog.setLastupdated(data);
         return blogRepository.save(blog);
 
     }
@@ -47,7 +53,17 @@ public class BlogController {
     @GetMapping("/get/writer/{writer}")
     public List<Blogs> getblogsbywriter(@PathVariable("writer") String writer)
     {
-        return blogRepository.findAllByWriter(writer);
+        return blogRepository.findAllByWriterLike("%"+writer+"%");
+    }
+    @GetMapping("/get/heading/{heading}")
+    public List<Blogs> getblogsbyheading(@PathVariable("heading") String heading)
+    {
+        return blogRepository.findAllByHeadingLike("%"+heading+"%");
+    }
+    @GetMapping("/get/lastupdated/{lastupdated}")
+    public List<Blogs> getblogsbylastupdated(@PathVariable("lastupdated") String lastupdated)
+    {
+        return blogRepository.findAllByLastupdatedLike("%"+lastupdated+"%");
     }
     @GetMapping(path = "/delete/{id}")
     public void deleteblog(@PathVariable("id") Long id)
@@ -74,6 +90,10 @@ public class BlogController {
         blog.setDetailh22(updatedblog.getDetailh22());
         blog.setImg(updatedblog.getImg());
         blog.setStatus(updatedblog.getStatus());
+        String pattern = "MMM dd,yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String data = simpleDateFormat.format(new Date());
+        blog.setLastupdated(data);
         return blogRepository.save(blog);
     }
 }

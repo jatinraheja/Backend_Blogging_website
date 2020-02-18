@@ -12,7 +12,8 @@ import java.util.Optional;
 @Repository
 public interface BlogRepository extends JpaRepository<Blogs,Long> {
     List<Blogs> findAllByCategory(String cat);
-    List<Blogs> findAllByWriter(String writer);
+    List<Blogs> findAllByWriterLike(String writer);
     public ArrayList<Blogs> findAllByUsers(Optional<Users> users);
-
+    List<Blogs> findAllByHeadingLike(String heading);
+    List<Blogs> findAllByLastupdatedLike(String lastupdated);
 }
